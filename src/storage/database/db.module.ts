@@ -1,19 +1,20 @@
-import { Module } from "@nestjs/common";
-import { DbConfig } from "./db.interface";
-import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { ConfigModule } from "src/config/config.module";
-import { ConfigService } from "src/config/config.service";
-import { ConfigDatabase } from "src/config/config.interface";
+import {Module} from '@nestjs/common';
+import {DbConfig} from './db.interface';
+import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm';
+import {ConfigModule} from 'src/config/config.module';
+import {ConfigService} from 'src/config/config.service';
+import {ConfigDatabase} from 'src/config/config.interface';
 
 @Module({})
 export class DBModule {
   private static getConnectionOptions(
     config: ConfigService,
-    dbConfig: DbConfig
+    dbConfig: DbConfig,
   ): TypeOrmModuleOptions {
     const dbData = config.get().db;
+    console.log(dbData.url);
     if (!dbData) {
-      throw Error("");
+      throw Error('');
     }
     const connectionOptions = this.getConnectionOptionsPostgres(dbData);
     return {
@@ -25,15 +26,15 @@ export class DBModule {
   }
 
   private static getConnectionOptionsPostgres(
-    dbData: ConfigDatabase
+    dbData: ConfigDatabase,
   ): TypeOrmModuleOptions {
     return {
-      type: "postgres",
+      type: 'postgres',
       url: dbData.url,
       keepConnectionAlive: true,
       ssl:
-        process.env.NODE_ENV !== "local" && process.env.NODE_ENV !== "test"
-          ? { rejectUnauthorized: false }
+        process.env.NODE_ENV !== 'local' && process.env.NODE_ENV !== 'test'
+          ? {rejectUnauthorized: false}
           : false,
     };
   }

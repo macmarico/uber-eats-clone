@@ -1,5 +1,5 @@
-import { ConnectionOptions } from "typeorm";
+import {ConnectionOptions} from 'typeorm';
 
 export interface DbConfig {
-  entities: ConnectionOptions["entities"];
+  entities: ConnectionOptions['entities'];
 }

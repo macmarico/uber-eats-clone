@@ -1,8 +1,8 @@
-import { DataSource } from 'typeorm';
+import {DataSource} from 'typeorm';
 
 const connectionSecure = new DataSource({
   type: 'postgres',
-  url: 'postgres://api:development_pass@localhost:5434/auth-api',
+  url: process.env.DATABASE_URL,
   synchronize: false,
   ssl: false,
   logging: true,

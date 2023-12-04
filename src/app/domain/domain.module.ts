@@ -1,9 +1,21 @@
 import {Module} from '@nestjs/common';
-import {AuthModule} from './auth/auth.module';
-import {CoreModule} from './core/core.module';
+import {DBModule} from '../../storage/database/db.module';
+import {ConfigModule} from '../../config/config.module';
+import {UserEntity} from './user/entity/user.entity';
+import {TerminusModule} from '@nestjs/terminus';
+import {UserModule} from './user/user.module';
+import {AppLoggerModule} from '../../logger/logger.module';
 
 @Module({
-  imports: [AuthModule, CoreModule],
+  imports: [
+    DBModule.forRoot({
+      entities: [UserEntity],
+    }),
+    UserModule,
+    ConfigModule,
+    AppLoggerModule,
+    TerminusModule,
+  ],
   controllers: [],
   providers: [],
 })

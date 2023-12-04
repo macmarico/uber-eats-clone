@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
-import { DEFAULT_CONFIG } from "./config.default";
-import { ConfigData, ConfigDatabase, ConfigSwagger } from "./config.interface";
+import {Injectable} from '@nestjs/common';
+import {DEFAULT_CONFIG} from './config.default';
+import {ConfigData, ConfigDatabase, ConfigSwagger} from './config.interface';
 
 @Injectable()
 export class ConfigService {
@@ -29,7 +29,7 @@ export class ConfigService {
   }
   private parseDBConfig(
     env: NodeJS.ProcessEnv,
-    defaultConfig: Readonly<ConfigDatabase>
+    defaultConfig: Readonly<ConfigDatabase>,
   ) {
     return {
       url: env.DATABASE_URL || defaultConfig.url,
@@ -37,7 +37,7 @@ export class ConfigService {
   }
   private parseSwaggerConfig(
     env: NodeJS.ProcessEnv,
-    defaultConfig: Readonly<ConfigSwagger>
+    defaultConfig: Readonly<ConfigSwagger>,
   ) {
     return {
       username: env.SWAGGER_USERNAME || defaultConfig.username,
