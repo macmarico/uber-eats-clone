@@ -8,6 +8,7 @@ RUN npm install && \
     rm -rf /tmp/* /var/tmp/*
 
 COPY ./docker-utils/entrypoint/init.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 COPY . /app
 

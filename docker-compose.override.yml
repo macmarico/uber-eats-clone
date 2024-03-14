@@ -6,7 +6,7 @@ services:
       NPM_INSTALL: ENABLE
       TYPEORM_MIGRATION: ENABLE
     ports:
-      - 3000:3000
+      - 3000:3001
 
   postgres:
     environment:
